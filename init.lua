@@ -24,11 +24,11 @@ end
 
 modals = {
   main = {
-    init = function(self, fsm) 
+    init = function(self, fsm)
       if self.modal then
         self.modal:enter()
       else
-        self.modal = hs.hotkey.modal.new({"cmd"}, "space")
+        self.modal = hs.hotkey.modal.new({"shift"}, "space")
       end
       self.modal:bind("","space", nil, function() fsm:toIdle(); windows.activateApp("Alfred 3") end)
       self.modal:bind("","w", nil, function() fsm:toWindows() end)
@@ -40,7 +40,7 @@ modals = {
       end)
       self.modal:bind("","escape", function() fsm:toIdle() end)
       function self.modal:entered() displayModalText "w - windows\na - apps\n j - jump" end
-    end 
+    end
   },
   windows = {
     init = function(self, fsm)
